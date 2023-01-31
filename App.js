@@ -2,14 +2,15 @@
 
 
 import { useState, useEffect } from 'react';
-import { Button, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import ColorConvert from 'color-convert'
 
 export default function App() {
   const [colors, setColors] = useState([{id: 1, color: '', hex: ''},{id: 2, color: '', hex: ''},{id: 3, color: '', hex: ''},{id: 4, color: '', hex: ''},{id: 5, color: '', hex: ''}])
-
+  const [clipboard, setClipboard] = useState('')
 const copyToClipboard = async(clip) => {
+  setClipboard(clip)
   await Clipboard.setStringAsync(clip);
 };
 
@@ -35,13 +36,17 @@ function getPalette() {
 
   return (
     <View>
-      <Text style={{fontSize: 30, textAlign: 'center', marginTop:60, marginBottom: 20}}>Random Color Palette</Text>
+    
+      {clipboard == '' ?
+        <Text style={{fontSize: 30, textAlign: 'center', marginTop:60, marginBottom: 20, fontWeight: '400'}}>Color Palette Generator</Text>:
+        <Text style={{fontSize: 22, textAlign: 'center', marginTop:60, marginBottom: 20, fontWeight: '400', backgroundColor:'#007AFF', color: 'white', padding: 5}}>Copied #{clipboard} to your Clipboard!</Text>}
+      
       <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center", marginBottom: 20}}>
     {colors.map(color => {
-      return <View key={color.id}><TouchableOpacity style={{height: 150, width: 150, borderRadius: 5, backgroundColor: color.color, margin: 10}} onPress={() => copyToClipboard(color.color)} /> 
-      <Text selectable={true} style={{textAlign: 'center', fontSize: 25, fontWeight: '300'}}>#{color.hex}</Text></View>})}
+      return <View key={color.id}><TouchableOpacity style={{height: 140, width: 140, borderRadius: 5, backgroundColor: color.color, margin: 10}} onPress={() => copyToClipboard(color.hex)} /> 
+      {color.hex && <Text selectable={true} style={{textAlign: 'center', fontSize: 25, fontWeight: '300'}}>#{color.hex}</Text>}</View>})}
      </View>
-     <Button title='Generate' onPress={() => getPalette()} />
+     <TouchableOpacity style={{backgroundColor: '#007AFF', padding: 20, borderRadius: 5}} onPress={() => getPalette()}><Text style={{textAlign: 'center', fontSize: 25, color: "white", fontWeight: '400'}}>Generate</Text></TouchableOpacity>
     </View>
   );
 }
