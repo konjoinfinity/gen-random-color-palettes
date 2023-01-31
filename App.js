@@ -37,7 +37,7 @@ function getPalette() {
       <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems:"center", justifyContent:"center", marginBottom: 30}}>
     {colors.map(color => {
       return <View key={color.id}><TouchableOpacity style={{height: 150, width: 150, borderRadius: 5, backgroundColor: color.color, margin: 10}} onPress={() => copyToClipboard(color.color)} /> 
-      <Text style={{textAlign: 'center'}}>{color.color}</Text></View>})}
+      <Text selectable={true} style={{textAlign: 'center'}}>{color.color}</Text></View>})}
      </View>
      <Button title='Generate' onPress={() => getPalette()} />
     </View>
