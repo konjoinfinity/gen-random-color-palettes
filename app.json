@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Gen Random Color Palette",
+    "slug": "Gen-Random-Color-Palette",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./color.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./color.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.konjo.genrandomcolorpalette",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./color.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.konjo.genrandomcolorpalette"
+    },
+    "extra": {
+      "eas": {
+
+      }
+    }
+  }
+}
